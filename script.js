@@ -3,16 +3,15 @@ const buttonCreateCarta = document.querySelector('#criar-carta');
 const cartaGerada = document.querySelector('#carta-gerada');
 
 buttonCreateCarta.addEventListener('click', () => {
-  cartaGerada.innerHTML = input.value;
-  const cartaSeparada = cartaGerada.split(' ');
-  const newWord = [];
-  for (let index = 0; index < cartaSeparada.length; index += 1) {
-    const span = document.createElement('span');
-    span.innerHTML = `${cartaSeparada[index]}`;
-    newWord.push(span);
-  }
+  if (!input.value.trim()) {
+    cartaGerada.innerHTML = 'Por favor, digite o conteúdo da carta.';
+  } else {
   cartaGerada.innerHTML = '';
-  for (let b = 0; b < newWord.length; b += 1) {
-    cartaGerada.appendChild(newWord[b]);
+  const cartaSeparada = input.value.split(' ');
+  for (let index = 0; index < cartaSeparada.length; index += 1) {
+    const createSpan = document.createElement('span');
+    createSpan.innerHTML = cartaSeparada[index];
+    cartaGerada.appendChild(createSpan);
   }
+ }
 });
